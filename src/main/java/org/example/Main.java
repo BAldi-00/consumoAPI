@@ -9,8 +9,6 @@ public class Main {
     static void main() {
         API api = new API();
 
-
-
         println("Inserisci un pokemon:");
         String nome = readln();
 
