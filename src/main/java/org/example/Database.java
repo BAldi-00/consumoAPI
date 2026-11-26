@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.IO.println;
+
 public class Database {
     private Connection connection = null;
     private static Database instance;
@@ -135,6 +137,9 @@ public class Database {
 
             //esecuzione query
             ps.execute();
+
+            println("Inserito il pokemon "+ nome +" nel DB");
+
         } catch (SQLException e) {
             throw new RuntimeException("Inserimento fallito: " + e.getMessage());
         }
