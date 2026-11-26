@@ -2,33 +2,38 @@ package org.example;
 
 import java.util.List;
 
+import static java.lang.IO.println;
+
 public record Pokemon(int id, String name, List<Types> types) {
 
     @Override
-    public String toString(){
-        String stringTypes = "";
-
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
         if (types != null) {
-            for (int i = 0; i < types.size(); i++) {
-                Types t = types.get(i);
-                if (t != null && t.type() != null && t.type().name() != null) {
-                    if (!stringTypes.isEmpty()) {
-                        stringTypes += ", ";
+            for (Types t : types) {
+                if (t != null && t.type() != null && t.type().name() != null && !t.type().name().isBlank()) {
+                    if (!sb.isEmpty()) {
+                        sb.append(", ");
                     }
-                    stringTypes += t.type().name();
+                    sb.append(t.type().name());
+                    println(t.type().name());
                 }
             }
         }
-
-        return "ID = " + this.id + ", " + "Nome = " + this.name + ", TIPI: " + stringTypes;
+        return "ID = " + id + ", Nome = " + name + ", TIPI: " + sb;
     }
 
-    public String getTipo1(){
-        return types.getFirst().toString();
+    public String getTipo1() {
+        if (types == null || types.isEmpty() || types.getFirst().type() == null) {
+            return null;
+        }
+        return types.getFirst().type().name();
     }
 
-    public String getTipo2(){
-        return types.get(1).toString();
+    public String getTipo2() {
+        if (types == null || types.size() < 2 || types.get(1).type() == null) {
+            return null;
+        }
+        return types.get(1).type().name();
     }
 }
-

@@ -35,7 +35,7 @@ public class Main {
                             pokemon = api.getPokemonByName(nome);
                             db.insertPokemon(pokemon.id(), pokemon.name(), pokemon.getTipo1(), pokemon.getTipo2());
                         }
-                        println(pokemon);
+                        println(pokemon.toString());
 
                         println();
                         println();
@@ -49,12 +49,12 @@ public class Main {
                         Pokemon pokemonById = null;
 
                         if(db.isPokemonThere(Id)){
-                            pokemonById = db.getPokemon(id);
+                            pokemonById = db.getPokemon(Id);
                         }else {
                             pokemonById = api.getPokemonById(Id);
                             db.insertPokemon(pokemonById.id(), pokemonById.name(), pokemonById.getTipo1(), pokemonById.getTipo2());
                         }
-                        println(pokemonById);
+                        println(pokemonById.toString());
 
                         println();
                         println();
